@@ -1,2 +1,9 @@
-h1 Tasks#show
-p Find me in app/views/tasks/show.html.slim
+h1 詳細
+
+table.table.table-responsive
+  thead.thead-default
+    tr
+      th= Task.human_attribute_name(:content)
+  tbody
+    tr
+      td= @task.content
