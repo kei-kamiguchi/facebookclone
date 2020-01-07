@@ -1,2 +1,10 @@
-h1 Tasks#index
-p Find me in app/views/tasks/index.html.slim
+h1 投稿一覧
+
+table.table.table-hover
+  thead.thead.thead-default
+    tr
+      th= Task.human_attribute_name(:content)
+  tbody
+    - @tasks.each do |task|
+      tr
+        td= task.content
