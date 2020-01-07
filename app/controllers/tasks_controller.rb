@@ -11,6 +11,11 @@ class TasksController < ApplicationController
   def create
     @task=Task.new(task_params)
 
+    if params[:back].present?
+      render 'new'
+      return
+    end
+
     if @task.save
       redirect_to tasks_path, notice: "投稿しました"
     else
@@ -37,7 +42,7 @@ class TasksController < ApplicationController
   end
 
   def confirm
-    @task=Task.find(params[:id])
+    @task=Task.new(task_params)
   end
 
   private

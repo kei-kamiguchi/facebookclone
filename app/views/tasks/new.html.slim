@@ -1,6 +1,6 @@
 h1 新規作成
 
-= form_with model: @task, local: true do |task|
+= form_with model: @task, local: true, url: confirm_tasks_path do |task|
   .group
     = task.label :content
     = task.text_field :content, class: 'form-control mb-3'
