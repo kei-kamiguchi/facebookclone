@@ -1,2 +1,7 @@
-h1 Tasks#edit
-p Find me in app/views/tasks/edit.html.slim
+h1 編集
+
+= form_with model: @task, local: true do |task|
+  .group
+    = task.label :content
+    = task.text_field :content, class: 'form-control mb-3'
+  = task.submit nil, class: 'btn btn-primary'
