@@ -6,4 +6,4 @@ table.table.alt-table-responsive
       th= Task.human_attribute_name(:content)
   tbody
     tr
-      td= @task.content
+      td= simple_format(h(@task.content), {}, sanitize: false, wrapper_tag: "div")

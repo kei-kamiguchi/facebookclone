@@ -5,7 +5,11 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task=Task.new
+    if params[:back]
+      @task = Task.new(task_params)
+    else
+      @task = Task.new
+    end
   end
 
   def create
@@ -19,7 +23,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path, notice: "投稿しました"
     else
-      render 'new'
+      render 'confirm'
     end
   end
 
@@ -54,6 +58,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:content, :image)
+    params.require(:task).permit(:content, :image, :image_cache)
   end
 end

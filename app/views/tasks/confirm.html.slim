@@ -1,9 +1,23 @@
 h1 確認
 
+- if @task.errors.present?
+  ul#error_explanation
+    - @task.errors.full_messages.each do |message|
+      li= message
+
 = form_with model: @task, local: true do |task|
-  .group
-    = task.label :content
-    = task.text_field :content, class: 'form-control mb-3'
-    = task.hidden_field :content
+  table.table.table-responsive-md
+    thead
+      tr
+        th= task.label :content
+      tr
+        td= simple_format(h(@task.content), {}, sanitize: false, wrapper_tag: "div")
+        = task.hidden_field :content
+      tr
+        td= image_tag(@task.image.url) if @task.image && @task.image.url
+        = task.hidden_field :image_cache
   = task.submit nil, class: 'btn btn-primary mr-3'
+
+= form_with(model:@task, url:new_task_path, local:true, method:"get") do |task|
+  = task.hidden_field :image_cache
   = task.submit '戻る',name: 'back', class: 'btn btn-primary'

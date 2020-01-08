@@ -1,7 +1,14 @@
 h1 編集
 
+- if @task.errors.present?
+  ul#error_explanation
+    - @task.errors.full_messages.each do |message|
+      li= message
+
 = form_with model: @task, local: true do |task|
   .group
     = task.label :content
-    = task.text_field :content, class: 'form-control mb-3'
+    = task.text_area :content, rows: 5, class: 'form-control mb-3'
+    = task.file_field :image
+    = task.hidden_field :image_cache
   = task.submit nil, class: 'btn btn-primary'
