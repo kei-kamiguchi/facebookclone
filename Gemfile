@@ -39,3 +39,7 @@ gem 'bootstrap'
 # imageuploader
 gem 'carrierwave'
 gem 'mini_magick'
+
+# password
+gem 'bcrypt'
+# gem 'bcrypt', '~> 3.1.7'
