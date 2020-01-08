@@ -5,19 +5,23 @@ h1 確認
     - @task.errors.full_messages.each do |message|
       li= message
 
-= form_with model: @task, local: true do |task|
+= form_with model: @task, url: tasks_path, local: true do |f|
   table.table.table-responsive-md
-    thead
+    tbody
       tr
-        th= task.label :content
+        th= f.label :content
       tr
         td= simple_format(h(@task.content), {}, sanitize: false, wrapper_tag: "div")
-        = task.hidden_field :content
+        = f.hidden_field :content
+      tr
+        th= f.label :image
       tr
         td= image_tag(@task.image.url) if @task.image && @task.image.url
-        = task.hidden_field :image_cache
-  = task.submit nil, class: 'btn btn-primary mr-3'
+        = f.hidden_field :image_cache
+  = f.submit nil, class: 'btn btn-primary mr-3'
 
-= form_with(model:@task, url:new_task_path, local:true, method:"get") do |task|
-  = task.hidden_field :image_cache
-  = task.submit '戻る',name: 'back', class: 'btn btn-primary'
+
+= form_with model: @task, url: new_task_path, local: true, method: :get do |f|
+  = f.hidden_field :content
+  = f.hidden_field :image_cache
+  = f.submit '戻る', name: 'back', class: 'btn btn-primary'
