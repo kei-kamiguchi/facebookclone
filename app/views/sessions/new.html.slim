@@ -1,0 +1,10 @@
+h1 ログイン
+
+= form_with scope: :session, locale: true, url: sessions_path do |f|
+  .form-group
+    = f.label :email
+    = f.text_field :email, class: "form-control"
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: "form-control"
+  = f.submit 'ログイン', class: "btn btn-primary mb-5"

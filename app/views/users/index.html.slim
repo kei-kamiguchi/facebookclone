@@ -14,6 +14,6 @@ h1 ユーザー一覧
         tr
           td= link_to user.name, user
           td= user.email
-          td.text-right
+          td.text-right.mb-5
             = link_to '編集', edit_user_path(user), class: "btn btn-primary mr-3"
             = link_to '削除', user, method: :delete, data: { confirm: "こちらのユーザーを削除します。よろしいですか？" }, class: 'btn btn-danger'

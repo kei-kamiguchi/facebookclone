@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task=Task.new(task_params)
+    @task=current_user.tasks.build(task_params)
 
     if params[:back].present?
       render 'new'
@@ -46,7 +46,7 @@ class TasksController < ApplicationController
   end
 
   def confirm
-    @task=Task.new(task_params)
+    @task=current_user.tasks.build(task_params)
   end
 
   def destroy
