@@ -10,7 +10,10 @@ table.table.table-responsive-xs
           td= image_tag(task.image.url) if task.image && task.image.url
         tr
           td= task.content
-        tr
-          td.text-right
-            = link_to '編集', edit_task_path(task), class: 'btn btn-info mr-3'
-            = link_to '削除', task, method: :delete, data: { confirm: "こちらの投稿を削除します。よろしいですか？" }, class: 'btn btn-info'
+        - unless User.find_by(id: task.user_id).name == current_user.name
+          tr.d-none
+        - else
+          tr
+            td.text-right
+              = link_to '編集', edit_task_path(task), class: 'btn btn-info mr-3'
+              = link_to '削除', task, method: :delete, data: { confirm: "こちらの投稿を削除します。よろしいですか？" }, class: 'btn btn-info'
