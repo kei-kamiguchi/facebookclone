@@ -1,2 +1,11 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+h1 詳細
+
+table.table.alt-table-responsive
+  thead.thead-default
+    tr
+      th= User.human_attribute_name(:name)
+      th= User.human_attribute_name(:email)
+  tbody
+    tr
+      td= @user.name
+      td= @user.email
