@@ -1,18 +1,16 @@
 h1 投稿一覧
 
-table.table.table-hover
+table.table.table-responsive-xs
   thead.thead-default
-    tr
-      th= Task.human_attribute_name(:content)
-      th= User.human_attribute_name(:name)
-      th= Task.human_attribute_name(:image)
-      th=
-  tbody
-    - @tasks.each do |task|
-      tr
-        td= link_to task.content.truncate(10), task
-        td= User.find_by(id: task.user_id).name
-        td= image_tag(task.image.url) if task.image && task.image.url
-        td.text-right
-          = link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3'
-          = link_to '削除', task, method: :delete, data: { confirm: "こちらの投稿を削除します。よろしいですか？" }, class: 'btn btn-danger'
+    tbody
+      - @tasks.each do |task|
+        tr
+          th= User.find_by(id: task.user_id).name
+        tr
+          td= image_tag(task.image.url) if task.image && task.image.url
+        tr
+          td= task.content
+        tr
+          td.text-right
+            = link_to '編集', edit_task_path(task), class: 'btn btn-info mr-3'
+            = link_to '削除', task, method: :delete, data: { confirm: "こちらの投稿を削除します。よろしいですか？" }, class: 'btn btn-info'
