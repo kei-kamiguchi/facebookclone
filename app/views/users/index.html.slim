@@ -8,11 +8,11 @@ h1 ユーザー一覧
       - @users.each do |user|
         tr
           th= User.human_attribute_name(:name)
-          td= link_to user.name, show_user_path(user)
+          th= User.human_attribute_name(:email)
           td=
         tr
-          th= User.human_attribute_name(:email)
+          td= link_to user.name, user
           td= user.email
-          td
-          = link_to '編集', edit_user_path(user), class: "btn btn-primary"
-          = link_to '削除', task, method: :delete, data: { confirm: "こちらのユーザーを削除します。よろしいですか？" }, class: 'btn btn-danger'
+          td.text-right
+            = link_to '編集', edit_user_path(user), class: "btn btn-primary mr-3"
+            = link_to '削除', user, method: :delete, data: { confirm: "こちらのユーザーを削除します。よろしいですか？" }, class: 'btn btn-danger'
